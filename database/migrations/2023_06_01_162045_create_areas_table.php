@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2);
+            $table->decimal('additonal_pieces_price', 8, 2);
             $table->timestamps();
             $table->softDeletes();
         });

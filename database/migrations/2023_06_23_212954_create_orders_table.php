@@ -13,19 +13,16 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status')->default('pending');
             $table->string('shipping_address');
-            $table->string('location_cdn')->nullable();
             $table->string('shipping_method')->nullable();
-            $table->string('customer_phone');
             $table->string('tracking_number', 8);
-            $table->boolean('transaction_status')->default(0);
             $table->decimal('total_price', 10, 2);
-            $table->string('customer_name');
-            $table->string('customer_email');
             $table->decimal('shipping_fee', 10, 2);
-            $table->unsignedBigInteger('area_id');
-            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+            $table->boolean('is_done')->default(false);
+            $table->date('delivered_on')->nullable();
+            $table->foreignId('area_id')->references('id')->on('areas')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

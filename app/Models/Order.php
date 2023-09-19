@@ -11,26 +11,19 @@ class Order extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'status',
         'shipping_address',
-        'location_cdn',
         'shipping_method',
-        'customer_phone',
         'tracking_number',
-        'transaction_status',
         'total_price',
-        'customer_name',
-        'customer_email',
         'shipping_fee',
+        'is_done',
         'delivered_on',
         'area_id',
-        'is_done',
     ];
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class)->withPivot('quantity');
-    }
+
 
     public function area()
     {

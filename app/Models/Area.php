@@ -10,6 +10,6 @@ class Area extends Model
 {
     use HasFactory, softDeletes;
 
-    
-    protected $fillable = ['name', 'price'];
+
+    protected $fillable = ['name', 'price', 'additional_price'];
 }
