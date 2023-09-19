@@ -16,10 +16,12 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'name' => $this->faker->word,
-            'description' => $this->faker->sentence,
-            'image' => $this->faker->imageUrl,  
-        ];
+       $name = $this->faker->unique()->word();
+       $uniqueName = $name . '_' . \Str::random(5);
+
+       return [
+           'name' => $uniqueName,
+           'parent_id' => null,
+       ];
     }
 }

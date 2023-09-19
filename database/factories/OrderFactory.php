@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Order;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
- */
+use App\Order;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 class OrderFactory extends Factory
 {
     /**
@@ -18,20 +17,16 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $faker->randomElement(['Pending', 'Processing', 'Shipped']),
-            'shipping_address' => $faker->address,
-            'location_cdn' => $faker->city,
-            'shipping_method' => $faker->randomElement(['Standard', 'Express']),
-            'customer_phone' => $faker->phoneNumber,
-            'tracking_number' => $faker->unique()->randomNumber(8),
-            'transaction_status' => $faker->boolean(),
-            'total_price' => $faker->randomFloat(2, 10, 500),
-            'customer_name' => $faker->name,
-            'customer_email' => $faker->email,
-            'shipping_fee' => $faker->randomFloat(2, 5, 20),
-            'area_id' => $faker->numberBetween(1, 10),
-            'delivered_on' => $faker->optional()->date(),
-            'is_done' => $faker->boolean(),   
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'status' => $this->faker->randomElement(['pending', 'processing', 'completed']),
+            'shipping_address' => $this->faker->address,
+            'shipping_method' => $this->faker->randomElement(['standard', 'express']),
+            'tracking_number' => $this->faker->ean8,
+            'total_price' => $this->faker->randomFloat(2, 50, 1000),
+            'shipping_fee' => $this->faker->randomFloat(2, 5, 50),
+            'is_done' => $this->faker->boolean(80),
+            'delivered_on' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'area_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
