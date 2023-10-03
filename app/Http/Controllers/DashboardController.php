@@ -18,10 +18,10 @@ class DashboardController extends Controller
         return Category::count();
     }
 
-    protected function ProductsCount()
-    {
-        return Product::count();
-    }
+    // protected function ProductsCount()
+    // {
+    //     return Product::count();
+    // }
 
     protected function ordersCount()
     {
@@ -33,19 +33,19 @@ class DashboardController extends Controller
         return Area::count();
     }
 
-    protected function compareMonthProducts()
-    {
-        $currentMonth = Carbon::now()->month;
-        $previousMonth = Carbon::now()->subMonth()->month;
+    // protected function compareMonthProducts()
+    // {
+    //     $currentMonth = Carbon::now()->month;
+    //     $previousMonth = Carbon::now()->subMonth()->month;
 
-        $currentMonthCount = Product::whereMonth('created_at', $currentMonth)->count();
-        $previousMonthCount = Product::whereMonth('created_at', $previousMonth)->count();
+    //     $currentMonthCount = Product::whereMonth('created_at', $currentMonth)->count();
+    //     $previousMonthCount = Product::whereMonth('created_at', $previousMonth)->count();
 
-        $statistics = [];
-        $statistics['currentMonthCount'] = $currentMonthCount;
-        $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ; 
-        return $statistics;
-    }
+    //     $statistics = [];
+    //     $statistics['currentMonthCount'] = $currentMonthCount;
+    //     $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ;
+    //     return $statistics;
+    // }
 
     protected function compareMonthCategories()
     {
@@ -57,7 +57,7 @@ class DashboardController extends Controller
 
         $statistics = [];
         $statistics['currentMonthCount'] = $currentMonthCount;
-        $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ; 
+        $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ;
         return $statistics;
     }
 
@@ -71,7 +71,7 @@ class DashboardController extends Controller
 
         $statistics = [];
         $statistics['currentMonthCount'] = $currentMonthCount;
-        $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ; 
+        $statistics['status'] =  $currentMonthCount > $previousMonthCount ? +$currentMonthCount-$previousMonthCount : -$previousMonthCount-$currentMonthCount ;
         return $statistics;
     }
 
@@ -106,16 +106,16 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $noOrders = $this->ordersCount();
-        $noProducts = $this->ProductsCount();
+        // $noProducts = $this->ProductsCount();
         $noCategories = $this->categoryCount();
         $noAreas = $this->areaCount();
 
-        $productsPercent = $this->compareMonthProducts()['status'];
+        // $productsPercent = $this->compareMonthProducts()['status'];
         $categoriesPercent = $this->compareMonthCategories()['status'];
         $ordersPercent = $this->compareMonthOrders()['status'];
 
 
-        return view('admin.index', compact('noOrders', 'noProducts', 'noCategories', 'noAreas', 'productsPercent', 'categoriesPercent', 'ordersPercent'));
+        return view('admin.index', compact('noOrders', 'noCategories', 'noAreas', 'categoriesPercent', 'ordersPercent'));
     }
 
 }

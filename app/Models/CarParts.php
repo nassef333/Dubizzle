@@ -23,4 +23,9 @@ class CarParts extends Model
         'sale_price',
         'sale_amount',
     ];
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class, 'car_id', 'id');
+    }
 }

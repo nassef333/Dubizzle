@@ -26,7 +26,7 @@
 
             <div class="navbar-nav-right d-flex align-items-center mt-3" id="navbar-collapse">
               <h4 class="">
-                Products
+                Stock
               </h4>
               <!-- Search -->
               <div class="navbar-nav align-items-center">
@@ -99,14 +99,14 @@
 
 
 <div class="card">
-  <h2 class="card-header text-center">Brands</h2>
-  <p class="text-center">Total Brands: {{ $brands->total() }}</p>
+  <h3 class="card-header text-center"><span class="text-muted">Stock of:</span> {{ $car->name }}</h2>
+  <p class="text-center">Total Cars: {{ $carStock->total() }}</p>
   <div class="card-body">
     <div class="search mt-2 mb-5">
       <div class="buttons mb-2">
-        <a href="/admin/brands/create" type="button" class="btn btn-outline-primary btn-sm">+ Add brand</a>
+        <a href="/admin/stock/create/{{ request()->segment(3) }}" type="button" class="btn btn-outline-primary btn-sm">+ Add Car</a>
         {{-- <a href="#" type="button" class="btn btn-outline-danger btn-sm">Archieve <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAjZJREFUSEvVlU1rE1EUhp8zBeMHJgtRLEQoCgqNCLpyIVYRpLhQUCkiuHMhFErnJogo1YALkXTu0OAvcKEbCy78Al0VFFQUQbQupCCCIBGRbBpIMkcmxNo0zcyodOHdnve+z33PnTNXWOElK+xPLEA97yAi38SYt39zmHiAtQ+Aw0CJanVCisXGn4CSAF4Du9umzxEZFtf9kRQSCVDf70f1S4eZ6ktEhsSY+SSQaIDn3UBktMtI9aLk89f+CaDWuoDtYfJdjNkQ1rRczlKv75J8PryrrrVsAvX946hOR54wCAakUPik1k4Co4jkxHXnlu7pAujU1E6azRfAmkiAyKC47qxa+xAYBqbFmJORAC0WV5FOh19NLra/qdR6Go1+ms0PgNPSB0FOCoX3i/d2JFDfP4PqzVhzeIPjnCMIbgFbF/SqFySfv94bYO194EgCQBVId9+oPBbXDYdyYXUmsPYzkF1Ur7SNUgmgoWROjNkWBagBv81ETqM6BuxNCJgXY9YmTRCQSmWo1SYQOZ8Q8FWM2RwFuAOcaAsqYswmnZwcxHHeJQQ8FWP29QZ43iFEnrQFTbLZlIyMNNXau8CxWIjIZXHdqz0BYUGtvQ2caokcZ0jGx2e0XN5Io/EK2BIBqSCyfemftnuSS6V19PXNAHuAZ2Sz+1spfH8A1Xs9hrAOHBVjHkVO8q+iFourSacLwAEg7OuVVrpw0jOZMVTPAjuA8JWbBS6JMR+XSxf74MT2PUbw/wN+AmTpvRlizY8RAAAAAElFTkSuQmCC"/></a> --}}
-        <form action="{{ route('brands.index') }}" method="GET" class="form-inline mt-2 mb-2">
+        <form action="" method="GET" class="form-inline mt-2 mb-2">
             @csrf
               <div class="input-group">
                   <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
@@ -118,26 +118,35 @@
       <table class="table">
         <thead>
           <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>origin</th>
+            <th>Car</th>
+            <th>Price</th>
+            <th>old Price</th>
+            <th>description</th>
+            <th>status</th>
+            <th>mileage</th>
+            <th>fuel type</th>
+            <th>gear box</th>
             <th class="text-center">Actions</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-          @foreach ($brands as $brand)
-            <tr id="deleteRow{{$brand->id}}">
-              <td>{{ $brand->id }}</td>
-              <td>{{ $brand->name }}</td>
-              <td>{{ $brand->origin }}</td>
+          @foreach ($carStock as $carStockItem)
+            <tr id="deleteRow{{$carStockItem->id}}">
+              <td>{{ $car->name }}</td>
+              <td>{{ $carStockItem->price }}</td>
+              <td>{{ $carStockItem->old_price }}</td>
+              <td>{{ $carStockItem->description }}</td>
+              <td>{{ $carStockItem->status }}</td>
+              <td>{{ $carStockItem->mileage }}</td>
+              <td>{{ $carStockItem->fuel_type }}</td>
+              <td>{{ $carStockItem->gearbox }}</td>
               <td class="text-center">
                 <div class="btn-group">
-                  <form action="/admin/brand/{{$brand->id}}" method="POST">
+                  <form action="/admin/stock/{{$carStockItem->id}}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <a href="/admin/brands/{{$brand->id}}/series" type="button" class="btn btn-outline-dark btn-sm">Series</a> <!-- Added btn-sm class -->
-                    <a href="/admin/brands/{{$brand->id}}/edit" type="button" class="btn btn-outline-primary btn-sm">Edit</a> <!-- Added btn-sm class -->
-                    <button type="button" onclick="showConfirmationModal({{$brand->id}})" class="btn btn-outline-danger btn-sm">Delete</button>
+                    <a href="/admin/stock/{{$carStockItem->id}}/edit" type="button" class="btn btn-outline-primary btn-sm">Edit</a>
+                    <button type="button" onclick="showConfirmationModal({{$carStockItem->id}})" class="btn btn-outline-danger btn-sm">Delete</button>
                   </form>
               </div>
               </td>
@@ -151,16 +160,16 @@
           <ul class="pagination">
 
             <!-- First Page Link -->
-            <li class="page-item {{ $brands->onFirstPage() ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $brands->url(1) }}" aria-label="First">
+            <li class="page-item {{ $carStock->onFirstPage() ? 'disabled' : '' }}">
+              <a class="page-link" href="{{ $carStock->url(1) }}" aria-label="First">
                 <span aria-hidden="true">&laquo;&laquo;</span>
                 <span class="sr-only"></span>
               </a>
             </li>
 
             <!-- Previous Page Link -->
-            <li class="page-item {{ $brands->onFirstPage() ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $brands->previousPageUrl() }}" aria-label="Previous">
+            <li class="page-item {{ $carStock->onFirstPage() ? 'disabled' : '' }}">
+              <a class="page-link" href="{{ $carStock->previousPageUrl() }}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only"></span>
               </a>
@@ -168,8 +177,8 @@
 
             <!-- Pagination Links -->
             @php
-                $totalPages = $brands->lastPage();
-                $currentPage = $brands->currentPage();
+                $totalPages = $carStock->lastPage();
+                $currentPage = $carStock->currentPage();
                 $visiblePages = 5; // Number of visible pages (adjust as needed)
                 $halfVisible = floor($visiblePages / 2);
                 $startPage = max(min($currentPage - $halfVisible, $totalPages - $visiblePages + 1), 1);
@@ -177,22 +186,22 @@
             @endphp
 
             @for ($page = $startPage; $page <= $endPage; $page++)
-              <li class="page-item {{ $page == $brands->currentPage() ? 'active' : '' }}">
-                <a class="page-link" href="{{ $brands->url($page) }}">{{ $page }}</a>
+              <li class="page-item {{ $page == $carStock->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $carStock->url($page) }}">{{ $page }}</a>
               </li>
             @endfor
 
             <!-- Next Page Link -->
-            <li class="page-item {{ $brands->currentPage() == $brands->lastPage() ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $brands->nextPageUrl() }}" aria-label="Next">
+            <li class="page-item {{ $carStock->currentPage() == $carStock->lastPage() ? 'disabled' : '' }}">
+              <a class="page-link" href="{{ $carStock->nextPageUrl() }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only"></span>
               </a>
             </li>
 
             <!-- Last Page Link -->
-            <li class="page-item {{ $brands->currentPage() == $brands->lastPage() ? 'disabled' : '' }}">
-              <a class="page-link" href="{{ $brands->url($brands->lastPage()) }}" aria-label="Last">
+            <li class="page-item {{ $carStock->currentPage() == $carStock->lastPage() ? 'disabled' : '' }}">
+              <a class="page-link" href="{{ $carStock->url($carStock->lastPage()) }}" aria-label="Last">
                 <span aria-hidden="true">&raquo;&raquo;</span>
                 <span class="sr-only"></span>
               </a>
@@ -204,7 +213,7 @@
 
       <!-- Page x of y -->
       <div class="d-flex justify-content-center">
-        <p>Page {{ $brands->currentPage() }} of {{ $brands->lastPage() }}</p>
+        <p>Page {{ $carStock->currentPage() }} of {{ $carStock->lastPage() }}</p>
       </div>
 
 
@@ -218,7 +227,7 @@
         <h5 class="modal-title" id="confirmationModalLabel">Confirm Deletion</h5>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete this Brand?</p>
+        <p>Are you sure you want to delete this car ?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -302,7 +311,7 @@
 
       function deleteBrand(BrandId) {
         $.ajax({
-          url: '/admin/brands/' + BrandId,
+          url: '/admin/stock/' + BrandId,
           type: 'DELETE',
           data: {
             _token: '{{ csrf_token() }}'

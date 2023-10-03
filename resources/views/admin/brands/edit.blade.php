@@ -1,55 +1,4 @@
-<!DOCTYPE html>
-
-<html
-  lang="en"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-/assets-path="..//assets/"
-  data-template="vertical-menu-template-free"
->
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-
-    <title>ALMUTAMYZON COMPUTERS & PERIPHERAL EQUIPMENT TRADING</title>
-
-    <meta name="description" content="" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="/assets/fonts/boxicons.css" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="/assets/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="..//assets/css/demo.css" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="/assets/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="..//assets/js/config.js"></script>
-  </head>
+@include('admin.statics.head')
 
   <body>
     <!-- Layout wrapper -->
@@ -63,7 +12,7 @@
               <span class="app-brand-logo demo" style="width: 20%">
                 <img src="/assets/img/icons/logo.png" style="width: 100%" alt="">
               </span>
-              <span class="app-brand-text menu-text fw-bolder ms-2">AL-MUTAMYZON</span>
+              <span class="app-brand-text menu-text fw-bolder ms-2">PartsNoon</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -149,7 +98,7 @@
                   <a href="/admin/new-orders" class="menu-link">
                     <div data-i18n="Error">New Orders</div>
                   </a>
-                </li>                
+                </li>
                 <li class="menu-item">
                   <a href="/admin/order" class="menu-link">
                     <div data-i18n="Error">All Orders</div>
@@ -177,7 +126,7 @@
                   <a href="/admin/brand/create" class="menu-link">
                     <div data-i18n="Error">New Brand</div>
                   </a>
-                </li>                
+                </li>
                 <li class="menu-item">
                   <a href="/admin/brand" class="menu-link">
                     <div data-i18n="Error">All Brands</div>
@@ -202,7 +151,7 @@
                   <a href="/admin/area/create" class="menu-link">
                     <div data-i18n="Error">New Area</div>
                   </a>
-                </li>                
+                </li>
                 <li class="menu-item">
                   <a href="/admin/area" class="menu-link">
                     <div data-i18n="Error">All Areas</div>
@@ -213,7 +162,7 @@
 
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">ADMINS</span></li>
-            
+
             <!-- Extended components -->
             <li class="menu-item">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -259,7 +208,7 @@
             </h4>
             <!-- Search -->
             <div class="navbar-nav align-items-center">
-              
+
             </div>
             <!-- /Search -->
 
@@ -305,8 +254,8 @@
                   {{Auth::user()->name}}
                   <br>
                   <span class="text-success">
-                    {{Auth::user()->role}}  
-                  </span>                    
+                    {{Auth::user()->role}}
+                  </span>
                 </p>
                 <p></p>
               </li>
@@ -323,8 +272,8 @@
 
             <div class="container-fluid flex-grow-1 container-p-y">
               <!-- Layout Demo -->
-              
-              
+
+
 
 
               <div class="col-xl">
@@ -334,16 +283,25 @@
                     <small class="text-muted float-end">Edit Brand</small>
                   </div>
                   <div class="card-body">
-                    <form action="/admin/brand/{{$brand->id}}" method="POST" enctype="multipart/form-data">
+                    <form action="/admin/brands/{{$brand->id}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <input type="hidden" name="_method" value="PUT">
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Name</label>
-                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="brand" name="name" value="{{$brand->name}}">
-                        @error('name')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                      </div>          
+                        <div class="row">
+                            <div class="mb-3 col">
+                                <label class="form-label" for="basic-default-fullname">Name</label>
+                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="brand" name="name" value="{{$brand->name}}">
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                              </div>
+                              <div class="mb-3 col">
+                                <label class="form-label" for="basic-default-fullname">Origin</label>
+                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="origin" name="origin" value="{{$brand->origin}}">
+                                @error('origin')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                              </div>
+                        </div>
                       <button type="submit" class="btn btn-primary">Edit brand</button>
                     </form>
                   </div>
@@ -370,7 +328,7 @@
                   document.write(new Date().getFullYear());
                 </script>
                 , powered by
-                <a href="https://wa.me/201112377882" target="_blank" class="footer-link fw-bolder">Nassef</a>, 
+                <a href="https://wa.me/201112377882" target="_blank" class="footer-link fw-bolder">Nassef</a>,
                 all rights reserved.
               </div>
           </footer>

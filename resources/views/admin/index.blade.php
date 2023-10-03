@@ -15,7 +15,7 @@
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>ALMUTAMYZON COMPUTERS & PERIPHERAL EQUIPMENT TRADING</title>
+  <title>PartsNoon | Dashboard</title>
 
   <meta name="description" content="" />
 
@@ -32,7 +32,7 @@
 
   <!-- Icons. Uncomment required icon fonts -->
   <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
-
+  <script src="https://kit.fontawesome.com/3b333d68c5.js" crossorigin="anonymous"></script>
   <!-- Core CSS -->
   <link rel="stylesheet" href="/assets/vendor/css/core.css" class="template-customizer-core-css" />
   <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
@@ -57,200 +57,7 @@
       <div class="layout-container">
         <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo mt-3 mb-3">
-            <a href="/admin/dashboard" class="app-brand-link">
-              <span class="app-brand-logo demo" style="width: 20%">
-                <img src="/assets/img/icons/logo.png" style="width: 100%" alt="">
-              </span>
-              <span class="app-brand-text menu-text fw-bolder ms-2">AL-MUTAMYZON</span>
-            </a>
-
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div>
-
-          <div class="menu-inner-shadow"></div>
-
-          <ul class="menu-inner py-1">
-            <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="/admin/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
-            </li>
-
-
-
-            {{-- PAGES --}}
-            <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Categories & Products</span>
-            </li>
-            <li class="menu-item">
-              <a href="" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Categories</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/category/create" class="menu-link">
-                    <div data-i18n="Account">Add Category</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/category" class="menu-link">
-                    <div data-i18n="Notifications">Show Categories</div>
-                  </a>
-                </li>
-                {{-- <li class="menu-item">
-                  <a href="pages-account-settings-connections.html" class="menu-link">
-                    <div data-i18n="Connections">Archieved Categories</div>
-                  </a>
-                </li> --}}
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Products</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/product/create" class="menu-link">
-                    <div data-i18n="Basic">Add Product</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/product" class="menu-link">
-                    <div data-i18n="Basic">Products</div>
-                  </a>
-                </li>
-                {{-- <li class="menu-item">
-                  <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                    <div data-i18n="Basic">Arcieved Products</div>
-                  </a>
-                </li> --}}
-              </ul>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Orders</div>
-              </a>
-              <ul class="menu-sub">
-                <!-- <li class="menu-item">
-                  <a href="pages-misc-under-maintenance.html" class="menu-link">
-                    <div data-i18n="Under Maintenance">Return order</div>
-                  </a>
-                </li> -->
-                <li class="menu-item">
-                  <a href="/admin/new-orders" class="menu-link">
-                    <div data-i18n="Error">New Orders</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/order" class="menu-link">
-                    <div data-i18n="Error">All Orders</div>
-                  </a>
-                </li>
-                <!-- <li class="menu-item">
-                  <a href="pages-misc-under-maintenance.html" class="menu-link">
-                    <div data-i18n="Under Maintenance">Returned orders</div>
-                  </a>
-                </li> -->
-              </ul>
-            </li>
-
-            <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Statics</span>
-            </li>
-
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Brands</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/brand/create" class="menu-link">
-                    <div data-i18n="Error">New Brand</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/brand" class="menu-link">
-                    <div data-i18n="Error">All Brands</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Areas</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/area/create" class="menu-link">
-                    <div data-i18n="Error">New Area</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/area" class="menu-link">
-                    <div data-i18n="Error">All Areas</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Swipers</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/swipers/create" class="menu-link">
-                    <div data-i18n="Error">New Swiper</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/swipers" class="menu-link">
-                    <div data-i18n="Error">All Swipers</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">ADMINS</span></li>
-
-            <!-- Extended components -->
-            <li class="menu-item">
-              <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Extended UI">Admins</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="/admin/admin/create" class="menu-link">
-                    <div data-i18n="Perfect Scrollbar">Add Admin</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="/admin/admin" class="menu-link">
-                    <div data-i18n="Text Divider">Show Admins</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-
-          </ul>
-        </aside>
+        @include('admin.statics.sidebar')
         <!-- / Menu -->
 
         <!-- Layout container -->
@@ -390,8 +197,8 @@
                                                     </div>
                                                 </div>
                                                 <span>Products</span>
-                                                <h3 class="card-title text-nowrap mb-1"> {{$noProducts}} Products</h3>
-                                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{$productsPercent}}</small>
+                                                <h3 class="card-title text-nowrap mb-1"> Products</h3>
+                                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i></small>
                                             </div>
                                         </div>
                                     </div>

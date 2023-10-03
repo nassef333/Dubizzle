@@ -20,4 +20,8 @@ class CarStock extends Model
         'fuel_type',
         'gearbox',
     ];
+    public function car()
+    {
+        return $this->belongsTo(Car::class, 'car_id', 'id');
+    }
 }

@@ -8,6 +8,8 @@
   data-assets-path="../assets/"
   data-template="vertical-menu-template-free"
 >
+@include('user.static.head')
+
   <head>
     <meta charset="utf-8" />
     <meta
@@ -15,7 +17,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>PartsNoon | Admin Login</title>
+    <title>User Login</title>
 
     <meta name="description" content="" />
 
@@ -54,6 +56,7 @@
 
   <body>
     <!-- Content -->
+    @include('user.static.header')
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
@@ -61,27 +64,57 @@
           <!-- Register -->
           <div class="card">
             <div class="card-body">
-              <h4 class="mb-5 text-center">Admin Login! 👋</h4>
+              <h4 class="mb-5 mt-3 text-center">User Register! 👋</h4>
 
-              <form method="POST" action="{{ route('admin.login.submit') }}" id="formAuthentication" class="mb-3">
+              <form method="POST" action="{{ route('register.submit') }}" id="formAuthentication" class="mb-3">
                 @csrf
                 @error('message')
                 <div class="text-danger text-center" style="font-weight: 800">{{ $message }}</div>
                 @enderror
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  @error('email')
+                  <label for="name" class="form-label">Name</label>
+                  @error('name')
                   <div class="text-danger">{{ $message }}*</div>
                   @enderror
                   <input
                     type="text"
                     class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your Email Address"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
                     autofocus
-                    value="{{old('email')}}"
+                    value="{{old('name')}}"
                   />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    @error('email')
+                    <div class="text-danger">{{ $message }}*</div>
+                    @enderror
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      placeholder="Enter your Email Address"
+                      autofocus
+                      value="{{old('email')}}"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    @error('phone')
+                    <div class="text-danger">{{ $message }}*</div>
+                    @enderror
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      name="phone"
+                      placeholder="Enter your phone Number"
+                      autofocus
+                      value="{{old('phone')}}"
+                    />
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -107,6 +140,8 @@
                 </div>
               </form>
             </div>
+            <a href="/register" class="m-3 text-center">Sign Up</a>
+
           </div>
           <!-- /Register -->
         </div>
