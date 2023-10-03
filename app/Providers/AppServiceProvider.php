@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Database\Factories\PhoneNumberProvider;
 use Faker\Generator as FakerGenerator;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $view->with('authUser', Auth::user());
         });
+
+
+        // Paginator::useBootstrapFive();
+        Paginator::useBootstrapFour();
     }
 }

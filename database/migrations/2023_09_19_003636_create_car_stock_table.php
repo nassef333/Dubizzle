@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->decimal('old_price', 10, 2);
-            $table->text('description');
-            $table->string('status');
-            $table->string('mileage');
+            $table->unsignedTinyInteger('no_passengers');
+            $table->enum('status', ['new', 'used', 'zero']); // new used zero
+            $table->string('mileage')->nullable();
             $table->string('fuel_type');
             $table->string('gearbox');
+            $table->text('description');
             $table->timestamps();
         });
     }

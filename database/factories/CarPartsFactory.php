@@ -17,8 +17,8 @@ class CarPartsFactory extends Factory
     public function definition(): array
     {
         return [
-            'car_id' => $this->faker->numberBetween(1, 10000),
-            'category_id' => $this->faker->numberBetween(1, 200),
+            'car_id' => $this->faker->numberBetween(1, 4999),
+            'category_id' => $this->faker->numberBetween(1, 99),
             'price' => $this->faker->randomFloat(2, 10, 500),
             'old_price' => $this->faker->randomFloat(2, 5, 400),
             'description' => $this->faker->sentence,

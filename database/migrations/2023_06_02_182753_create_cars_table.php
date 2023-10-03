@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('car_series_id')->references('id')->on('car_series')->onDelete('cascade');
+            $table->text('type');
             $table->text('description')->nullable();
             $table->unsignedInteger('quantity_available')->default(0);
             $table->timestamps();

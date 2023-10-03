@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('parent_id')->nullable()->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
