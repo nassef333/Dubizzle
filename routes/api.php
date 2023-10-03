@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\Cars\AdvancedSearchController;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('tracking-order/{id}', [OrderController::class, 'trackingOrder']);
 
     Route::get('/brand/{id}', [BrandController::class, 'showApi']);
+});
 
+
+
+
+Route::prefix("cars")->as("cars.")->group(function () {
+    Route::get("/", [AdvancedSearchController::class, 'index']);
 });

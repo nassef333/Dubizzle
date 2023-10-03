@@ -19,7 +19,7 @@ class CarSeriesFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->sentence,
-            'brand_id' => $this->faker->numberBetween(1, 10), // Adjust the range as needed
+            'brand_id' => $this->faker->numberBetween(1, 99), // Adjust the range as needed
         ];
     }
 }

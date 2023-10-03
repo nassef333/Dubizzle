@@ -18,7 +18,8 @@ class CarFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'car_series_id' => $this->faker->numberBetween(1, 1000),
+            'car_series_id' => $this->faker->numberBetween(1, 999),
+            'type' => $this->faker->randomElement(['sports', 'sedan', 'coupe', 'family']),
             'description' => $this->faker->sentence,
             'quantity_available' => $this->faker->numberBetween(1, 100),
         ];

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\Cars\AdvancedSearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
@@ -29,9 +30,22 @@ use PHPUnit\Framework\Attributes\Group;
 
 
 
-//guest user Routes
+Route::prefix("cars")->as("cars.")->group(function () {
+    Route::view("advanced-search", "cars.advanced-search")->name('advanced-search');
+    Route::view("details", "cars.show")->name('car_details');
+});
+
+Route::view("about", "site.about")->name('about');
+Route::view("contact", "site.contact")->name('contact');
+Route::view("faq", "site.faq")->name('faq');
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::view('contact', 'user.contact');
+
+
+
+
+
+//guest user Routes
 Route::get('product/{id}', [ProductController::class, 'show']);
 Route::get('category/{id}', [CategoryController::class, 'getCategory'])->name('user.category.products');
 Route::get('search-category-products/{tracking_number}', [CategoryController::class, 'productSearch'])->name('category.products.search');
@@ -41,12 +55,10 @@ Route::get('order/search', [OrderController::class, 'searchOrder']);
 Route::post('tracking-order/{id}', [OrderController::class, 'trackingOrder'])->name('tracking.order');
 
 Route::get('/advanced-search', [ProductController::class, 'advancedSearch'])->name('products.advanced_search');
-Route::get('/faq', [ProductController::class, 'faq'])->name('faq');
-Route::get('/about-us', [ProductController::class, 'aboutUs'])->name('about');
 
-Route::get('/cart', [OrderController::class, 'cart'])->name('cart');
-Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-Route::post('/proceed-order', [OrderController::class, 'store'])->name('proceed.order');
+// Route::get('/cart', [OrderController::class, 'cart'])->name('cart');
+// Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+// Route::post('/proceed-order', [OrderController::class, 'store'])->name('proceed.order');
 
 
 
@@ -106,3 +118,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
+
+
+
+
+Auth::routes();
