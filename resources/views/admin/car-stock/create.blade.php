@@ -221,16 +221,16 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                                <div class="mb-3 col">
-                                                    <label class="form-label" for="basic-default-fullname">Class</label>
-                                                    <select id="yearSelect" class="form-control" id="basic-default-fullname"
-                                                        name="class">
-                                                        
-                                                    </select>
-                                                    @error('class')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
+                                            {{-- <div class="mb-3 col">
+                                                <label class="form-label" for="basic-default-fullname">Class</label>
+                                                <select id="yearSelect" class="form-control"
+                                                    id="basic-default-fullname" name="class">
+
+                                                </select>
+                                                @error('class')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div> --}}
 
                                             <button type="submit" class="btn btn-primary">Add Car</button>
                                         </form>
@@ -279,21 +279,21 @@
 
         <script src="/assets/js/menu.js"></script>
         <!-- endbuild -->
-    <script>
-        // Get the current year
-        const currentYear = new Date().getFullYear();
+        <script>
+            // Get the current year
+            const currentYear = new Date().getFullYear();
 
-        // Get the select element
-        const yearSelect = document.getElementById('yearSelect');
+            // Get the select element
+            const yearSelect = document.getElementById('yearSelect');
 
-        // Add options for the last 20 years
-        for (let year = currentYear; year >= currentYear - 20; year--) {
-            const option = document.createElement('option');
-            option.value = year;
-            option.text = year;
-            yearSelect.appendChild(option);
-        }
-    </script>
+            // Add options for the last 20 years
+            for (let year = currentYear; year >= currentYear - 20; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.text = year;
+                yearSelect.appendChild(option);
+            }
+        </script>
         <!-- Vendors JS -->
 
         <!-- Main JS -->

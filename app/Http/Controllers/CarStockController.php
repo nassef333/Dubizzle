@@ -94,8 +94,28 @@ class CarStockController extends Controller
             'mileage' => 'required',
             'fuel_type' => 'required',
             'gearbox' => 'required',
-            'class' => 'required',
+            'cover' => 'nullable',
+            'images' => 'nullable',
+            'no_passengers' => 'required',
+
         ]);
+
+
+        if ($request->has("cover")) {
+
+            $carStock->clearMediaCollection('cover');
+
+            $carStock->addMediaFromRequest('cover')->toMediaCollection('cover');
+        }
+
+        if ($request->has("images")) {
+
+            $carStock->clearMediaCollection('car_photos');
+
+            $carStock->addMultipleMediaFromRequest(['images'])->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('car_photos');
+            });
+        }
 
         $carStock->update($validatedData);
 
