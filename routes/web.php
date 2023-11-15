@@ -134,9 +134,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('stock/create/{car_id}', [CarStockController::class, 'create']);
 
     //stock
-    Route::get('car/{car_id}/parts', [CarPartController::class, 'index']);
     Route::resource('parts', CarPartController::class);
     Route::get('parts/create/{car_id}', [CarPartController::class, 'create']);
+    Route::get('car/{car_id}/parts', [CarPartController::class, 'index']);
     Route::get('/missing-parts', [CarPartController::class, 'partsRequest'])->name('partsRequest');
     Route::get('/request/{part_id}/delete', [CarPartController::class, 'deleteRequest'])->name('deleteRequest');
 

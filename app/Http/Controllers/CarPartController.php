@@ -99,7 +99,26 @@ class CarPartController extends Controller
             'warranty' => 'required',
             'sale_price' => 'required',
             'sale_amount' => 'required',
+            'cover' => 'nullable',
+            'images' => 'nullable',
         ]);
+
+        if ($request->has("cover")) {
+
+            $carParts->clearMediaCollection('cover');
+
+            $carParts->addMediaFromRequest('cover')->toMediaCollection('cover');
+        }
+
+        if ($request->has("images")) {
+
+            $carParts->clearMediaCollection('part_photos');
+
+            $carParts->addMultipleMediaFromRequest(['images'])->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('part_photos');
+            });
+        }
+
 
         $carParts->update($validatedData);
 
@@ -126,7 +145,7 @@ class CarPartController extends Controller
             ->join('users', 'missing_parts.user_id', '=', 'users.id')
             ->paginate(20);
 
-            // return $requests;
+        // return $requests;
         return view('admin.partsRequests.index', compact('requests'));
     }
 
@@ -150,6 +169,6 @@ class CarPartController extends Controller
     {
         $request = MissingParts::find($id);
         $request->delete();
-        return $this->success('','Request Deleted Successfully.',200);
+        return $this->success('', 'Request Deleted Successfully.', 200);
     }
 }
